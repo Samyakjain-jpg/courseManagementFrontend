@@ -11,30 +11,30 @@ import introVideo from '../../assets/videos/intro.mp4';
 const Home = () => {
   return (
     <section className='home'>
-        <div className="container">
-            <Stack direction={["column","row"]} height="100%" justifyContent={["center","space-between"]} alignItems='center' spacing={["16","56"]}>
-                <VStack width={"full"} alignItems={["center","flex-end"]}>
-                    <Heading children="Learn form the exprert" size={"2xl"}/>
-                    <Text children='Find Valuable Contact At Resonable Price'  />
-                    <Link to="/courses" />
-                    <Button size={"lg"} colorScheme='red' >Explore Now</Button>
-                </VStack>
+      <div className="container">
+        <Stack direction={["column", "row"]} height="100%" justifyContent={["center", "space-between"]} alignItems='center' spacing={["16", "56"]}>
+          <VStack width={"full"} alignItems={["center", "flex-end"]}>
+            <Heading children="Learn form the exprert" size={"2xl"} />
+            <Text children='Find Valuable Contact At Resonable Price' />
+            <Link to="/courses" />
+            <Button size={"lg"} colorScheme='red' >Explore Now</Button>
+          </VStack>
 
-                <Image className='vetor-graphics' boxSize={"md"} src={bg} objectFit={"contain"}/>
-            </Stack>
-        </div>
-        <Box padding={"8"} bg={"blackAlpha.800"}>
-            <Heading children="OUR PARTNERS" textAlign={"center"} fontFamily="body" color={"red.200"}/>
-            <HStack className='brandsBanner' justifyContent={"space-evenly"} marginTop={"4"}> 
-            <CgGoogle />
+          <Image className='vetor-graphics' boxSize={"md"} src={bg} objectFit={"contain"} />
+        </Stack>
+      </div>
+      <Box padding={"8"} bg={"blackAlpha.800"}>
+        <Heading children="OUR PARTNERS" textAlign={"center"} fontFamily="body" color={"red.500"} />
+        <HStack className='brandsBanner' justifyContent={"space-evenly"} marginTop={"4"}>
+          <CgGoogle />
           <CgYoutube />
           <SiCoursera />
           <SiUdemy />
           <DiAws />
-            </HStack>
-        </Box>
+        </HStack>
+      </Box>
 
-        <div className='container2'>
+      <div className='container2'>
         <video
           controls
           controlsList="nodownload nofullscreen noremoteplayback"
@@ -42,7 +42,7 @@ const Home = () => {
           disableRemotePlayback
           src={introVideo}
         ></video>
-        </div>
+      </div>
     </section>
   )
 }
