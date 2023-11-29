@@ -14,12 +14,13 @@ import {
   import { Link } from 'react-router-dom';
   import introVideo from '../../assets/videos/intro.mp4';
   import termsAndCondition from '../../assets/docs/termsAndCondition';
+  import image from '../../assets/images/my.jpg';
   
   const Founder = () => (
     <Stack direction={['column', 'row']} spacing={['4', '16']} padding={'8'}>
       <VStack>
         <Avatar
-          src="/"
+          src={image}
           boxSize={['40', '48']}
         />
         <Text children="Co-Founder" opacity={0.7} />

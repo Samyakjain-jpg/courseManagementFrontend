@@ -12,9 +12,9 @@ import {
   import React from 'react';
   import { RiDashboardFill, RiLogoutBoxLine, RiMenu5Fill } from 'react-icons/ri';
   import { Link } from 'react-router-dom';
-import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
-//   import { useDispatch } from 'react-redux';
-//   import { logout } from '../../../redux/actions/user';
+  import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
+  import { useDispatch } from 'react-redux';
+  import { logout } from '../../../redux/actions/user';
   
   const LinkButton = ({ url = '/', title = 'Home', onClose }) => (
     <Link onClick={onClose} to={url}>
@@ -22,14 +22,14 @@ import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
     </Link>
   );
   
-  const Header = ({ isAuthenticated = true, user }) => {
+  const Header = ({ isAuthenticated = true, user }) => { //used also a true
     const { isOpen, onOpen, onClose } = useDisclosure();
   
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
   
     const logoutHandler = () => {
-    //   onClose();
-    //   dispatch(logout());
+      onClose();
+      dispatch(logout());
     console.log('logged out');
     };
   
@@ -54,7 +54,7 @@ import { ColorModeSwitcher } from '../../../ColorModeSwitcher';
         <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
           <DrawerOverlay backdropFilter={'blur(5px)'} />
           <DrawerContent>
-            <DrawerHeader borderBottomWidth={'1px'}>COURSE BUNDLER</DrawerHeader>
+            <DrawerHeader borderBottomWidth={'1px'}>iTechOnline MANAGEMENT</DrawerHeader>
   
             <DrawerBody>
               <VStack spacing={'4'} alignItems="flex-start">

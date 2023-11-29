@@ -14,7 +14,7 @@ const Home = () => {
       <div className="container">
         <Stack direction={["column", "row"]} height="100%" justifyContent={["center", "space-between"]} alignItems='center' spacing={["16", "56"]}>
           <VStack width={"full"} alignItems={["center", "flex-end"]}>
-            <Heading children="Learn form the exprert" size={"2xl"} />
+            <Heading children="Learn form the iTechOnline" size={"2xl"} />
             <Text children='Find Valuable Contact At Resonable Price' />
             <Link to="/courses" />
             <Button size={"lg"} colorScheme='red' >Explore Now</Button>

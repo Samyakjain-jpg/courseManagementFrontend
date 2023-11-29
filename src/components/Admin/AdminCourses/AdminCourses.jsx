@@ -18,27 +18,27 @@ import {
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { RiDeleteBin7Fill } from 'react-icons/ri';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cursor from '../../../assets/images/cursor.png';
 import Sidebar from '../Sidebar';
 import CourseModal from './CourseModal';
-// import {
-//   getAllCourses,
-//   getCourseLectures,
-// } from '../../../redux/actions/course';
-// import {
-//   addLecture,
-//   deleteCourse,
-//   deleteLecture,
-// } from '../../../redux/actions/admin';
-// import toast from 'react-hot-toast';
+import {
+  getAllCourses,
+  getCourseLectures,
+} from '../../../redux/actions/course';
+import {
+  addLecture,
+  deleteCourse,
+  deleteLecture,
+} from '../../../redux/actions/admin';
+import toast from 'react-hot-toast';
 
 const AdminCourses = () => {
-  // const { courses, lectures } = useSelector(state => state.course);
+  const { courses, lectures } = useSelector(state => state.course);
 
-  // const { loading, error, message } = useSelector(state => state.admin);
+  const { loading, error, message } = useSelector(state => state.admin);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
@@ -46,46 +46,46 @@ const AdminCourses = () => {
   const [courseTitle, setCourseTitle] = useState('');
 
   const coureDetailsHandler = (courseId, title) => {
-    // dispatch(getCourseLectures(courseId));
+    dispatch(getCourseLectures(courseId));
     onOpen();
     setCourseId(courseId);
     setCourseTitle(title);
   };
   const deleteButtonHandler = courseId => {
     console.log(courseId);
-    // dispatch(deleteCourse(courseId));
+    dispatch(deleteCourse(courseId));
   };
 
-  // const deleteLectureButtonHandler = async (courseId, lectureId) => {
-  //   await dispatch(deleteLecture(courseId, lectureId));
-  //   dispatch(getCourseLectures(courseId));
-  // };
+  const deleteLectureButtonHandler = async (courseId, lectureId) => {
+    await dispatch(deleteLecture(courseId, lectureId));
+    dispatch(getCourseLectures(courseId));
+  };
 
-  // const addLectureHandler = async (e, courseId, title, description, video) => {
-  //   e.preventDefault();
-  //   const myForm = new FormData();
+  const addLectureHandler = async (e, courseId, title, description, video) => {
+    e.preventDefault();
+    const myForm = new FormData();
 
-  //   myForm.append('title', title);
-  //   myForm.append('description', description);
-  //   myForm.append('file', video);
+    myForm.append('title', title);
+    myForm.append('description', description);
+    myForm.append('file', video);
 
-  //   await dispatch(addLecture(courseId, myForm));
-  //   dispatch(getCourseLectures(courseId));
-  // };
+    await dispatch(addLecture(courseId, myForm));
+    dispatch(getCourseLectures(courseId));
+  };
 
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error(error);
-  //     dispatch({ type: 'clearError' });
-  //   }
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: 'clearError' });
+    }
 
-  //   if (message) {
-  //     toast.success(message);
-  //     dispatch({ type: 'clearMessage' });
-  //   }
+    if (message) {
+      toast.success(message);
+      dispatch({ type: 'clearMessage' });
+    }
 
-  //   dispatch(getAllCourses());
-  // }, [dispatch, error, message, onClose]);
+    dispatch(getAllCourses());
+  }, [dispatch, error, message, onClose]);
 
   return (
     <Grid
@@ -121,7 +121,7 @@ const AdminCourses = () => {
             </Thead>
 
             <Tbody>
-              {/* {courses.map(item => (
+              {courses.map(item => (
                 <Row
                   coureDetailsHandler={coureDetailsHandler}
                   deleteButtonHandler={deleteButtonHandler}
@@ -129,7 +129,7 @@ const AdminCourses = () => {
                   item={item}
                   loading={loading}
                 />
-              ))} */}
+              ))}
             </Tbody>
           </Table>
         </TableContainer>
@@ -139,10 +139,10 @@ const AdminCourses = () => {
           onClose={onClose}
           id={courseId}
           courseTitle={courseTitle}
-          // deleteButtonHandler={deleteLectureButtonHandler}
-          // addLectureHandler={addLectureHandler}
-          // lectures={lectures}
-          // loading={loading}
+          deleteButtonHandler={deleteLectureButtonHandler}
+          addLectureHandler={addLectureHandler}
+          lectures={lectures}
+          loading={loading}
         />
       </Box>
 

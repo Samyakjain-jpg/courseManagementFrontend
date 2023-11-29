@@ -59,7 +59,7 @@ const CourseModal = ({
       isOpen={isOpen}
       size="full"
       onClose={handleClose}
-      scrollBehavior="inside"
+      scrollBehavior="outside"
     >
       <ModalOverlay />
 

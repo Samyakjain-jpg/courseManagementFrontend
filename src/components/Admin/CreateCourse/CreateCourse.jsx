@@ -9,14 +9,14 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import React from 'react';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cursor from '../../../assets/images/cursor.png';
-// import { createCourse } from '../../../redux/actions/admin';
+import { createCourse } from '../../../redux/actions/admin';
 import { fileUploadCss } from '../../Auth/Register';
 import Sidebar from '../Sidebar';
-// import toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const CreateCourse = () => {
   const [title, setTitle] = useState('');
@@ -26,8 +26,8 @@ const CreateCourse = () => {
   const [image, setImage] = useState('');
   const [imagePrev, setImagePrev] = useState('');
 
-  // const dispatch = useDispatch();
-  // const { loading, error, message } = useSelector(state => state.admin);
+  const dispatch = useDispatch();
+  const { loading, error, message } = useSelector(state => state.admin);
 
   const categories = [
     'Web development',
@@ -50,28 +50,28 @@ const CreateCourse = () => {
     };
   };
 
-  // const submitHandler = e => {
-  //   e.preventDefault();
-  //   const myForm = new FormData();
-  //   myForm.append('title', title);
-  //   myForm.append('description', description);
-  //   myForm.append('category', category);
-  //   myForm.append('createdBy', createdBy);
-  //   myForm.append('file', image);
-  //   dispatch(createCourse(myForm));
-  // };
+  const submitHandler = e => {
+    e.preventDefault();
+    const myForm = new FormData();
+    myForm.append('title', title);
+    myForm.append('description', description);
+    myForm.append('category', category);
+    myForm.append('createdBy', createdBy);
+    myForm.append('file', image);
+    dispatch(createCourse(myForm));
+  };
 
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error(error);
-  //     dispatch({ type: 'clearError' });
-  //   }
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+      dispatch({ type: 'clearError' });
+    }
 
-  //   if (message) {
-  //     toast.success(message);
-  //     dispatch({ type: 'clearMessage' });
-  //   }
-  // }, [dispatch, error, message]);
+    if (message) {
+      toast.success(message);
+      dispatch({ type: 'clearMessage' });
+    }
+  }, [dispatch, error, message]);
 
   return (
     <Grid
@@ -82,7 +82,7 @@ const CreateCourse = () => {
       templateColumns={['1fr', '5fr 1fr']}
     >
       <Container py="16">
-        <form>
+        <form onSubmit={submitHandler}>
           <Heading
             textTransform={'uppercase'}
             children="Create Course"
@@ -117,7 +117,7 @@ const CreateCourse = () => {
               value={category}
               onChange={e => setCategory(e.target.value)}
             >
-              <option value="">Select Category</option>
+              <option value="">Category</option>
 
               {categories.map(item => (
                 <option key={item} value={item}>
@@ -140,10 +140,10 @@ const CreateCourse = () => {
               onChange={changeImageHandler}
             />
             {imagePrev && (
-              <Image src={imagePrev}   boxSize="64" objectFit={'contain'} />
+              <Image src={imagePrev} boxSize="64" objectFit={'contain'} />
             )}
             <Button
-              // isLoading={loading}
+              isLoading={loading}
               w="full"
               colorScheme={'purple'}
               type="submit"
@@ -160,3 +160,5 @@ const CreateCourse = () => {
 };
 
 export default CreateCourse;
+
+
